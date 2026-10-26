@@ -2,7 +2,6 @@ import { type Field, type MatcherConfig } from '@grafana/data';
 import { FilterByValueType, type FilterByValueConfig, type ValueSetOptions } from '@grafana/data/internal';
 
 import { editableRangeFilter } from './rangeFilter';
-
 export function createValuePredicate(
   field: Field,
   values: ValueSetOptions['values'],

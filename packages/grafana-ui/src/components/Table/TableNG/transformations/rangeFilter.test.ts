@@ -65,7 +65,7 @@ it.each([{ inclusive: false }, { allowOpenBounds: false }, { includeMissing: und
   }
 );
 
-it('uses the panel timezone for new selections and preserves a saved timezone', () => {
+it('uses the panel timezone for new and updated selections', () => {
   expect(createValuePredicate(context.field, ['1000'], undefined, 'Europe/Berlin').options.timeZone).toBe(
     'Europe/Berlin'
   );
@@ -76,5 +76,5 @@ it('uses the panel timezone for new selections and preserves a saved timezone', 
       { values: ['1000'], mode: 'display', timeZone: 'UTC' },
       'Europe/Berlin'
     ).options.timeZone
-  ).toBe('UTC');
+  ).toBe('Europe/Berlin');
 });
