@@ -26,16 +26,16 @@ export function ResultCount({ kind, total, isLoading = false }: ResultCountProps
     return null;
   }
 
-  const formatted = new Intl.NumberFormat().format(total.count) + (total.isLowerBound ? '+' : '');
-
   return (
     <Text variant="bodySmall" color="secondary" element="p">
-      {resultCountLabel(kind, total.count, formatted)}
+      {ruleCountLabel(kind, total.count, total.isLowerBound)}
     </Text>
   );
 }
 
-function resultCountLabel(kind: RuleKind, count: number, formatted: string): string {
+/** "12 alert rules", with the number formatted for the locale and a `+` when it is only a lower bound. */
+export function ruleCountLabel(kind: RuleKind, count: number, isLowerBound = false): string {
+  const formatted = new Intl.NumberFormat().format(count) + (isLowerBound ? '+' : '');
   if (kind === 'alert') {
     return t('alerting.gma-rule-list.result-count.alert-rules', '', {
       count,
