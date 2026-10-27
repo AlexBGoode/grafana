@@ -246,6 +246,49 @@ type ServerOptions struct {
 	Listener net.Listener
 }
 
+// UserAPIDependencies supplies the production services used by the legacy user APIs.
+type UserAPIDependencies struct {
+	Cfg           *setting.Cfg
+	Users         user.Service
+	Organizations org.Service
+	Teams         team.Service
+	AccessControl accesscontrol.AccessControl
+	Permissions   accesscontrol.Service
+	Authn         authn.Service
+	AuthInfo      login.AuthInfoService
+	UserTokens    auth.UserTokenService
+	SearchUsers   searchusers.Service
+	Quota         quota.Service
+	Stars         star.Service
+	Preferences   pref.Service
+	License       licensing.Licensing
+	LoginAttempts loginAttempt.Service
+	UserVerifier  user.Verifier
+}
+
+// RegisterUserAPI registers user, organization-user, and admin-user routes
+// without starting the HTTP server or registering unrelated API groups.
+func RegisterUserAPI(routes routing.RouteRegister, deps UserAPIDependencies) (*HTTPServer, error) {
+	hs := &HTTPServer{
+		log: log.New("http.server"), Cfg: deps.Cfg,
+		userService: deps.Users, orgService: deps.Organizations, TeamService: deps.Teams,
+		AccessControl: deps.AccessControl, accesscontrolService: deps.Permissions,
+		authnService: deps.Authn, authInfoService: deps.AuthInfo, AuthTokenService: deps.UserTokens,
+		searchUsersService: deps.SearchUsers, QuotaService: deps.Quota,
+		starService: deps.Stars, preferenceService: deps.Preferences,
+		License: deps.License, loginAttemptService: deps.LoginAttempts, userVerifier: deps.UserVerifier,
+	}
+	if err := hs.declareFixedRoles(); err != nil {
+		return nil, err
+	}
+	routes.Group("/api", func(apiRoute routing.RouteRegister) {
+		hs.registerUserRoutes(apiRoute)
+		hs.registerOrgUserRoutes(apiRoute)
+	}, middleware.ReqSignedIn)
+	hs.registerAdminUserRoutes(routes)
+	return hs, nil
+}
+
 func ProvideHTTPServer(opts ServerOptions, cfg *setting.Cfg, routeRegister routing.RouteRegister, bus bus.Bus,
 	renderService rendering.Service, licensing licensing.Licensing, hooksService *hooks.HooksService,
 	cacheService *localcache.CacheService, sqlStore db.DB,

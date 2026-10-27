@@ -16,16 +16,22 @@ import (
 	grafanaapiserver "github.com/grafana/grafana/pkg/services/apiserver"
 	"github.com/grafana/grafana/pkg/services/apiserver/endpoints/request"
 	contextmodel "github.com/grafana/grafana/pkg/services/contexthandler/model"
+	"github.com/grafana/grafana/pkg/setting"
 	"github.com/grafana/grafana/pkg/util/errhttp"
 	"github.com/grafana/grafana/pkg/web"
 )
 
 func (hs *HTTPServer) registerPlaylistAPI(apiRoute routing.RouteRegister) {
+	RegisterPlaylistAPI(apiRoute, hs.Cfg, hs.clientConfigProvider)
+}
+
+// RegisterPlaylistAPI registers the legacy HTTP facade against the API server.
+func RegisterPlaylistAPI(apiRoute routing.RouteRegister, cfg *setting.Cfg, clientConfigProvider grafanaapiserver.DirectRestConfigProvider) {
 	// Register the actual handlers
 	// Deprecated: use /apis/playlist.grafana.app/ instead
 	apiRoute.Group("/playlists", func(playlistRoute routing.RouteRegister) {
 		// Use k8s client to implement legacy API
-		handler := newPlaylistK8sHandler(hs)
+		handler := newPlaylistK8sHandler(cfg, clientConfigProvider)
 		playlistRoute.Get("/", handler.searchPlaylists)
 		playlistRoute.Get("/:uid", handler.getPlaylist)
 		playlistRoute.Get("/:uid/items", handler.getPlaylistItems)
@@ -142,11 +148,11 @@ type playlistK8sHandler struct {
 // Playlist k8s wrapper functions
 //-----------------------------------------------------------------------------------------
 
-func newPlaylistK8sHandler(hs *HTTPServer) *playlistK8sHandler {
+func newPlaylistK8sHandler(cfg *setting.Cfg, clientConfigProvider grafanaapiserver.DirectRestConfigProvider) *playlistK8sHandler {
 	return &playlistK8sHandler{
 		gvr:                  playlistv1.PlaylistKind().GroupVersionResource(),
-		namespacer:           request.GetNamespaceMapper(hs.Cfg),
-		clientConfigProvider: hs.clientConfigProvider,
+		namespacer:           request.GetNamespaceMapper(cfg),
+		clientConfigProvider: clientConfigProvider,
 	}
 }
 

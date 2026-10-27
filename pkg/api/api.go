@@ -76,7 +76,6 @@ func (hs *HTTPServer) registerRoutes() {
 	authorize := ac.Middleware(hs.AccessControl)
 	authorizeInOrg := ac.AuthorizeInOrgMiddleware(hs.AccessControl, hs.authnService)
 	quota := middleware.Quota(hs.QuotaService)
-	userUIDResolver := middlewareUserUIDResolver(hs.userService, ":id")
 
 	r := hs.RouteRegister
 
@@ -309,18 +308,7 @@ func (hs *HTTPServer) registerRoutes() {
 			userRoute.Post("/revoke-auth-token", requestmeta.SetOwner(requestmeta.TeamAuth), routing.Wrap(hs.RevokeUserAuthToken))
 		}, reqSignedInNoAnonymous)
 
-		apiRoute.Group("/users", func(usersRoute routing.RouteRegister) {
-			userIDScope := ac.Scope("global.users", "id", ac.Parameter(":id"))
-			usersRoute.Get("/", authorize(ac.EvalPermission(ac.ActionUsersRead)), routing.Wrap(hs.searchUsersService.SearchUsers))
-			usersRoute.Get("/search", authorize(ac.EvalPermission(ac.ActionUsersRead)), routing.Wrap(hs.searchUsersService.SearchUsersWithPaging))
-			usersRoute.Get("/:id", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserByID))
-			usersRoute.Get("/:id/teams", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserTeams))
-			usersRoute.Get("/:id/orgs", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserOrgList))
-			// query parameters /users/lookup?loginOrEmail=admin@example.com
-			usersRoute.Get("/lookup", authorize(ac.EvalPermission(ac.ActionUsersRead, ac.ScopeGlobalUsersAll)), routing.Wrap(hs.GetUserByLoginOrEmail))
-			usersRoute.Put("/:id", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersWrite, userIDScope)), routing.Wrap(hs.UpdateUser))
-			usersRoute.Post("/:id/using/:orgId", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersWrite, userIDScope)), routing.Wrap(hs.UpdateUserActiveOrg))
-		}, requestmeta.SetOwner(requestmeta.TeamAuth))
+		hs.registerUserRoutes(apiRoute)
 
 		// org information available to all users.
 		apiRoute.Group("/org", func(orgRoute routing.RouteRegister) {
@@ -330,14 +318,8 @@ func (hs *HTTPServer) registerRoutes() {
 
 		// current org
 		apiRoute.Group("/org", func(orgRoute routing.RouteRegister) {
-			userIDScope := ac.Scope("users", "id", ac.Parameter(":userId"))
 			orgRoute.Put("/", authorize(ac.EvalPermission(ac.ActionOrgsWrite)), routing.Wrap(hs.UpdateCurrentOrg))
 			orgRoute.Put("/address", authorize(ac.EvalPermission(ac.ActionOrgsWrite)), routing.Wrap(hs.UpdateCurrentOrgAddress))
-			orgRoute.Get("/users", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRead)), routing.Wrap(hs.GetOrgUsersForCurrentOrg))
-			orgRoute.Get("/users/search", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRead)), routing.Wrap(hs.SearchOrgUsersWithPaging))
-			orgRoute.Post("/users", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersAdd, ac.ScopeUsersAll)), quota(user.QuotaTargetSrv), quota(org.QuotaTargetSrv), routing.Wrap(hs.AddOrgUserToCurrentOrg))
-			orgRoute.Patch("/users/:userId", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersWrite, userIDScope)), routing.Wrap(hs.UpdateOrgUserForCurrentOrg))
-			orgRoute.Delete("/users/:userId", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRemove, userIDScope)), routing.Wrap(hs.RemoveOrgUserForCurrentOrg))
 
 			// invites
 			orgRoute.Get("/invites", authorize(ac.EvalPermission(ac.ActionOrgUsersAdd)), routing.Wrap(hs.GetPendingOrgInvites))
@@ -350,22 +332,7 @@ func (hs *HTTPServer) registerRoutes() {
 			orgRoute.Patch("/preferences", authorize(ac.EvalPermission(ac.ActionOrgsPreferencesWrite)), routing.Wrap(hs.PatchOrgPreferences))
 		})
 
-		// current org without requirement of user to be org admin
-		apiRoute.Group("/org", func(orgRoute routing.RouteRegister) {
-			lookupEvaluator := func() ac.Evaluator {
-				if hs.License.FeatureEnabled("accesscontrol.enforcement") {
-					return ac.EvalPermission(ac.ActionOrgUsersRead)
-				}
-				// For oss we allow users with access to update permissions on either folders, teams or dashboards to perform the lookup
-				return ac.EvalAny(
-					ac.EvalPermission(ac.ActionOrgUsersRead),
-					ac.EvalPermission(ac.ActionTeamsPermissionsWrite),
-					ac.EvalPermission(folder.ActionFoldersPermissionsWrite),
-					ac.EvalPermission(dashboards.ActionDashboardsPermissionsWrite),
-				)
-			}
-			orgRoute.Get("/users/lookup", authorize(lookupEvaluator()), routing.Wrap(hs.GetOrgUsersForCurrentOrgLookup))
-		})
+		hs.registerOrgUserRoutes(apiRoute)
 
 		// create new org
 		apiRoute.Post("/orgs", authorizeInOrg(ac.UseGlobalOrg, ac.EvalPermission(ac.ActionOrgsCreate)), quota(org.QuotaTargetSrv), routing.Wrap(hs.CreateOrg))
@@ -571,23 +538,7 @@ func (hs *HTTPServer) registerRoutes() {
 		adminRoute.Post("/provisioning/alerting/reload", authorize(ac.EvalPermission(ActionProvisioningReload, ScopeProvisionersAlertRules)), routing.Wrap(hs.AdminProvisioningReloadAlerting))
 	}, reqSignedIn)
 
-	// Administering users
-	r.Group("/api/admin/users", func(adminUserRoute routing.RouteRegister) {
-		userIDScope := ac.Scope("global.users", "id", ac.Parameter(":id"))
-
-		adminUserRoute.Post("/", authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersCreate)), routing.Wrap(hs.AdminCreateUser))
-		adminUserRoute.Put("/:id/password", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersPasswordUpdate, userIDScope)), routing.Wrap(hs.AdminUpdateUserPassword))
-		adminUserRoute.Put("/:id/permissions", userUIDResolver, reqGrafanaAdmin, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersPermissionsUpdate, userIDScope)), routing.Wrap(hs.AdminUpdateUserPermissions))
-		adminUserRoute.Delete("/:id", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersDelete, userIDScope)), routing.Wrap(hs.AdminDeleteUser))
-		adminUserRoute.Post("/:id/disable", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersDisable, userIDScope)), routing.Wrap(hs.AdminDisableUser))
-		adminUserRoute.Post("/:id/enable", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersEnable, userIDScope)), routing.Wrap(hs.AdminEnableUser))
-		adminUserRoute.Get("/:id/quotas", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersQuotasList, userIDScope)), routing.Wrap(hs.GetUserQuotas))
-		adminUserRoute.Put("/:id/quotas/:target", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersQuotasUpdate, userIDScope)), routing.Wrap(hs.UpdateUserQuota))
-
-		adminUserRoute.Post("/:id/logout", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersLogout, userIDScope)), routing.Wrap(hs.AdminLogoutUser))
-		adminUserRoute.Get("/:id/auth-tokens", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersAuthTokenList, userIDScope)), routing.Wrap(hs.AdminGetUserAuthTokens))
-		adminUserRoute.Post("/:id/revoke-auth-token", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersAuthTokenUpdate, userIDScope)), routing.Wrap(hs.AdminRevokeUserAuthToken))
-	}, reqSignedIn)
+	hs.registerAdminUserRoutes(r)
 
 	// rendering
 	r.Get("/render/*", requestmeta.SetSLOGroup(requestmeta.SLOGroupHighSlow), reqSignedIn, hs.RenderHandler)
@@ -607,6 +558,77 @@ func (hs *HTTPServer) registerRoutes() {
 
 	// Snapshots delete for public mode or using the deleteKey
 	r.Get("/api/snapshots-delete/:deleteKey", reqSnapshotPublicModeOrDelete, routing.Wrap(hs.DeleteDashboardSnapshotByDeleteKey))
+}
+
+func (hs *HTTPServer) registerUserRoutes(apiRoute routing.RouteRegister) {
+	authorize := ac.Middleware(hs.AccessControl)
+	userUIDResolver := middlewareUserUIDResolver(hs.userService, ":id")
+	apiRoute.Group("/users", func(usersRoute routing.RouteRegister) {
+		userIDScope := ac.Scope("global.users", "id", ac.Parameter(":id"))
+		usersRoute.Get("/", authorize(ac.EvalPermission(ac.ActionUsersRead)), routing.Wrap(hs.searchUsersService.SearchUsers))
+		usersRoute.Get("/search", authorize(ac.EvalPermission(ac.ActionUsersRead)), routing.Wrap(hs.searchUsersService.SearchUsersWithPaging))
+		usersRoute.Get("/:id", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserByID))
+		usersRoute.Get("/:id/teams", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserTeams))
+		usersRoute.Get("/:id/orgs", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersRead, userIDScope)), routing.Wrap(hs.GetUserOrgList))
+		// query parameters /users/lookup?loginOrEmail=admin@example.com
+		usersRoute.Get("/lookup", authorize(ac.EvalPermission(ac.ActionUsersRead, ac.ScopeGlobalUsersAll)), routing.Wrap(hs.GetUserByLoginOrEmail))
+		usersRoute.Put("/:id", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersWrite, userIDScope)), routing.Wrap(hs.UpdateUser))
+		usersRoute.Post("/:id/using/:orgId", userUIDResolver, authorize(ac.EvalPermission(ac.ActionUsersWrite, userIDScope)), routing.Wrap(hs.UpdateUserActiveOrg))
+	}, requestmeta.SetOwner(requestmeta.TeamAuth))
+}
+
+func (hs *HTTPServer) registerOrgUserRoutes(apiRoute routing.RouteRegister) {
+	authorize := ac.Middleware(hs.AccessControl)
+	quota := middleware.Quota(hs.QuotaService)
+	apiRoute.Group("/org", func(orgRoute routing.RouteRegister) {
+		userIDScope := ac.Scope("users", "id", ac.Parameter(":userId"))
+		orgRoute.Get("/users", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRead)), routing.Wrap(hs.GetOrgUsersForCurrentOrg))
+		orgRoute.Get("/users/search", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRead)), routing.Wrap(hs.SearchOrgUsersWithPaging))
+		orgRoute.Post("/users", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersAdd, ac.ScopeUsersAll)), quota(user.QuotaTargetSrv), quota(org.QuotaTargetSrv), routing.Wrap(hs.AddOrgUserToCurrentOrg))
+		orgRoute.Patch("/users/:userId", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersWrite, userIDScope)), routing.Wrap(hs.UpdateOrgUserForCurrentOrg))
+		orgRoute.Delete("/users/:userId", requestmeta.SetOwner(requestmeta.TeamAuth), authorize(ac.EvalPermission(ac.ActionOrgUsersRemove, userIDScope)), routing.Wrap(hs.RemoveOrgUserForCurrentOrg))
+	})
+
+	// current org without requirement of user to be org admin
+	apiRoute.Group("/org", func(orgRoute routing.RouteRegister) {
+		lookupEvaluator := func() ac.Evaluator {
+			if hs.License.FeatureEnabled("accesscontrol.enforcement") {
+				return ac.EvalPermission(ac.ActionOrgUsersRead)
+			}
+			// For oss we allow users with access to update permissions on either folders, teams or dashboards to perform the lookup
+			return ac.EvalAny(
+				ac.EvalPermission(ac.ActionOrgUsersRead),
+				ac.EvalPermission(ac.ActionTeamsPermissionsWrite),
+				ac.EvalPermission(folder.ActionFoldersPermissionsWrite),
+				ac.EvalPermission(dashboards.ActionDashboardsPermissionsWrite),
+			)
+		}
+		orgRoute.Get("/users/lookup", authorize(lookupEvaluator()), routing.Wrap(hs.GetOrgUsersForCurrentOrgLookup))
+	})
+}
+
+func (hs *HTTPServer) registerAdminUserRoutes(r routing.RouteRegister) {
+	authorizeInOrg := ac.AuthorizeInOrgMiddleware(hs.AccessControl, hs.authnService)
+	userUIDResolver := middlewareUserUIDResolver(hs.userService, ":id")
+	reqSignedIn := middleware.ReqSignedIn
+	reqGrafanaAdmin := middleware.ReqGrafanaAdmin
+	// Administering users
+	r.Group("/api/admin/users", func(adminUserRoute routing.RouteRegister) {
+		userIDScope := ac.Scope("global.users", "id", ac.Parameter(":id"))
+
+		adminUserRoute.Post("/", authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersCreate)), routing.Wrap(hs.AdminCreateUser))
+		adminUserRoute.Put("/:id/password", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersPasswordUpdate, userIDScope)), routing.Wrap(hs.AdminUpdateUserPassword))
+		adminUserRoute.Put("/:id/permissions", userUIDResolver, reqGrafanaAdmin, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersPermissionsUpdate, userIDScope)), routing.Wrap(hs.AdminUpdateUserPermissions))
+		adminUserRoute.Delete("/:id", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersDelete, userIDScope)), routing.Wrap(hs.AdminDeleteUser))
+		adminUserRoute.Post("/:id/disable", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersDisable, userIDScope)), routing.Wrap(hs.AdminDisableUser))
+		adminUserRoute.Post("/:id/enable", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersEnable, userIDScope)), routing.Wrap(hs.AdminEnableUser))
+		adminUserRoute.Get("/:id/quotas", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersQuotasList, userIDScope)), routing.Wrap(hs.GetUserQuotas))
+		adminUserRoute.Put("/:id/quotas/:target", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersQuotasUpdate, userIDScope)), routing.Wrap(hs.UpdateUserQuota))
+
+		adminUserRoute.Post("/:id/logout", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersLogout, userIDScope)), routing.Wrap(hs.AdminLogoutUser))
+		adminUserRoute.Get("/:id/auth-tokens", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersAuthTokenList, userIDScope)), routing.Wrap(hs.AdminGetUserAuthTokens))
+		adminUserRoute.Post("/:id/revoke-auth-token", userUIDResolver, authorizeInOrg(ac.UseGlobalOrSingleOrg(hs.Cfg), ac.EvalPermission(ac.ActionUsersAuthTokenUpdate, userIDScope)), routing.Wrap(hs.AdminRevokeUserAuthToken))
+	}, reqSignedIn)
 }
 
 func middlewareUserUIDResolver(userService user.Service, paramName string) web.Handler {
