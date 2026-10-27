@@ -597,6 +597,8 @@ func TestBuild_PrivateResourceManifestsDisableSearch(t *testing.T) {
 	all := paths(Build(true, true, nil, fakeClient{}, []builder.APIGroupBuilder{b}, nil, Options{HybridEnabled: true}))
 	assert.Contains(t, all["dashboard.grafana.app/v1"], "dashboards/trash")
 	assert.Contains(t, all["dashboard.grafana.app/v1"], "dashboards/search/hybrid")
+	// Same version as the absence checks below, so they cannot pass because v2beta1 is not mounted.
+	assert.Contains(t, all["dashboard.grafana.app/v2beta1"], "dashboards/search/hybrid")
 	for _, endpoint := range []string{"dashboardsettings/search", "dashboardsettings/search/hybrid", "dashboardsettings/trash"} {
 		assert.NotContains(t, all["dashboard.grafana.app/v2beta1"], endpoint)
 	}

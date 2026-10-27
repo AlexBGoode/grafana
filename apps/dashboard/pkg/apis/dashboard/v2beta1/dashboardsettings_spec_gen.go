@@ -10,8 +10,7 @@ type DashboardSettingsPanelDefaults struct {
 	LegendPlacement *DashboardSettingsPanelDefaultsLegendPlacement `json:"legendPlacement,omitempty"`
 	TooltipMode     *DashboardSettingsPanelDefaultsTooltipMode     `json:"tooltipMode,omitempty"`
 	AxisScale       *DashboardSettingsPanelDefaultsAxisScale       `json:"axisScale,omitempty"`
-	// Codegen renders `int & >=0` as uint, which generates *uint64 and drops the lower bound from
-	// the schema; `>-1` keeps an int64 field and a minimum.
+	// Number of decimal places, 0 to 15.
 	Decimals *int64 `json:"decimals,omitempty"`
 }
 
@@ -33,7 +32,7 @@ type DashboardSettingsSpec struct {
 	// An empty string turns auto refresh off.
 	AutoRefresh *string                                `json:"autoRefresh,omitempty"`
 	TimeRange   *DashboardSettingsV2beta1SpecTimeRange `json:"timeRange,omitempty"`
-	// Same values as DashboardCursorSync, without its default.
+	// Same values as the dashboard's cursorSync.
 	CursorSync *DashboardSettingsSpecCursorSync `json:"cursorSync,omitempty"`
 	Layout     *DashboardSettingsSpecLayout     `json:"layout,omitempty"`
 	Panels     *DashboardSettingsPanelDefaults  `json:"panels,omitempty"`

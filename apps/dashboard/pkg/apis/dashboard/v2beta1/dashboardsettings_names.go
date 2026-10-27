@@ -8,6 +8,7 @@ package v2beta1
 const DashboardSettingsOrgName = "namespace"
 
 // DashboardSettingsFolderName is the name of the folder tier object for the folder with the given UID.
+// folderUID must not be a root folder UID ("" or "general"): root-level settings live in the org tier object, DashboardSettingsOrgName.
 func DashboardSettingsFolderName(folderUID string) string {
 	return "folder-" + folderUID
 }

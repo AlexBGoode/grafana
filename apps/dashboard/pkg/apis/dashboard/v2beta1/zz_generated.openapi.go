@@ -4299,7 +4299,7 @@ func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsPanelDefaults(ref common
 					},
 					"decimals": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Codegen renders `int & >=0` as uint, which generates *uint64 and drops the lower bound from the schema; `>-1` keeps an int64 field and a minimum.",
+							Description: "Number of decimal places, 0 to 15.",
 							Type:        []string{"integer"},
 							Format:      "int64",
 						},
@@ -4343,7 +4343,7 @@ func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsSpec(ref common.Referenc
 					},
 					"cursorSync": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Same values as DashboardCursorSync, without its default.",
+							Description: "Same values as the dashboard's cursorSync.",
 							Type:        []string{"string"},
 							Format:      "",
 						},

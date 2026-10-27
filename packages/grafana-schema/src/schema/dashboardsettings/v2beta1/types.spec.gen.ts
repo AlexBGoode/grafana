@@ -9,8 +9,7 @@ export interface PanelDefaults {
 	legendPlacement?: "bottom" | "right";
 	tooltipMode?: "single" | "multi" | "none";
 	axisScale?: "linear" | "log2" | "log10";
-	// Codegen renders `int & >=0` as uint, which generates *uint64 and drops the lower bound from
-	// the schema; `>-1` keeps an int64 field and a minimum.
+	// Number of decimal places, 0 to 15.
 	decimals?: number;
 }
 
@@ -27,7 +26,7 @@ export interface Spec {
 		from: string;
 		to: string;
 	};
-	// Same values as DashboardCursorSync, without its default.
+	// Same values as the dashboard's cursorSync.
 	cursorSync?: "Off" | "Crosshair" | "Tooltip";
 	layout?: "GridLayout" | "AutoGridLayout";
 	panels?: PanelDefaults;
