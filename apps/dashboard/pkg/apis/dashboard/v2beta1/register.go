@@ -93,6 +93,28 @@ var NotebookResourceInfo = utils.NewResourceInfo(GROUP, VERSION,
 	},
 )
 
+var DashboardSettingsResourceInfo = utils.NewResourceInfo(GROUP, VERSION,
+	"dashboardsettings", "dashboardsettings", "DashboardSettings",
+	func() runtime.Object { return &DashboardSettings{} },
+	func() runtime.Object { return &DashboardSettingsList{} },
+	utils.TableColumns{
+		Definition: []metav1.TableColumnDefinition{
+			{Name: "Name", Type: "string", Format: "name"},
+			{Name: "Created At", Type: "date"},
+		},
+		Reader: func(obj any) ([]interface{}, error) {
+			settings, ok := obj.(*DashboardSettings)
+			if ok && settings != nil {
+				return []interface{}{
+					settings.Name,
+					settings.CreationTimestamp.UTC().Format(time.RFC3339),
+				}, nil
+			}
+			return nil, fmt.Errorf("expected dashboard settings")
+		},
+	},
+)
+
 var (
 	SchemeBuilder      runtime.SchemeBuilder
 	localSchemeBuilder = &SchemeBuilder
@@ -114,6 +136,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&VariableList{},
 		&Notebook{},
 		&NotebookList{},
+		&DashboardSettings{},
+		&DashboardSettingsList{},
 		&metav1.PartialObjectMetadata{},
 		&metav1.PartialObjectMetadataList{},
 	)

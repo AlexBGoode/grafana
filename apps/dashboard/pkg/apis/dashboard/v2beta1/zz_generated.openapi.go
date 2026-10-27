@@ -88,113 +88,120 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		DashboardQueryOptionsSpec{}.OpenAPIModelName():                                                                                      schema_pkg_apis_dashboard_v2beta1_DashboardQueryOptionsSpec(ref),
 		DashboardQueryVariableKind{}.OpenAPIModelName():                                                                                     schema_pkg_apis_dashboard_v2beta1_DashboardQueryVariableKind(ref),
 		DashboardQueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind{}.OpenAPIModelName(): schema_pkg_apis_dashboard_v2beta1_DashboardQueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind(ref),
-		DashboardQueryVariableSpec{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_DashboardQueryVariableSpec(ref),
-		DashboardRangeMap{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardRangeMap(ref),
-		DashboardRegexMap{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardRegexMap(ref),
-		DashboardRepeatOptions{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_DashboardRepeatOptions(ref),
-		DashboardRowRepeatOptions{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardRowRepeatOptions(ref),
-		DashboardRowsLayoutKind{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutKind(ref),
-		DashboardRowsLayoutRowKind{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutRowKind(ref),
-		DashboardRowsLayoutRowSpec{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutRowSpec(ref),
-		DashboardRowsLayoutSpec{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutSpec(ref),
-		DashboardSpec{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_DashboardSpec(ref),
-		DashboardSpecialValueMap{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_DashboardSpecialValueMap(ref),
-		DashboardStatus{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_DashboardStatus(ref),
-		DashboardStringOrArrayOfString{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_DashboardStringOrArrayOfString(ref),
-		DashboardStringOrFloat64{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_DashboardStringOrFloat64(ref),
-		DashboardSwitchVariableKind{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_DashboardSwitchVariableKind(ref),
-		DashboardSwitchVariableSpec{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_DashboardSwitchVariableSpec(ref),
-		DashboardTabRepeatOptions{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardTabRepeatOptions(ref),
-		DashboardTabsLayoutKind{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutKind(ref),
-		DashboardTabsLayoutSpec{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutSpec(ref),
-		DashboardTabsLayoutTabKind{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutTabKind(ref),
-		DashboardTabsLayoutTabSpec{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutTabSpec(ref),
-		DashboardTextVariableKind{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardTextVariableKind(ref),
-		DashboardTextVariableSpec{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardTextVariableSpec(ref),
-		DashboardThreshold{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardThreshold(ref),
-		DashboardThresholdsConfig{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardThresholdsConfig(ref),
-		DashboardTimeRangeOption{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_DashboardTimeRangeOption(ref),
-		DashboardTimeSettingsSpec{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_DashboardTimeSettingsSpec(ref),
-		DashboardTransformationKind{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_DashboardTransformationKind(ref),
-		DashboardV2beta1ActionStyle{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1ActionStyle(ref),
-		DashboardV2beta1AdhocVariableKindDatasource{}.OpenAPIModelName():                         schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1AdhocVariableKindDatasource(ref),
-		DashboardV2beta1DataQueryKindDatasource{}.OpenAPIModelName():                             schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1DataQueryKindDatasource(ref),
-		DashboardV2beta1FieldConfigSourceOverrides{}.OpenAPIModelName():                          schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1FieldConfigSourceOverrides(ref),
-		DashboardV2beta1GroupByVariableKindDatasource{}.OpenAPIModelName():                       schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1GroupByVariableKindDatasource(ref),
-		DashboardV2beta1RangeMapOptions{}.OpenAPIModelName():                                     schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1RangeMapOptions(ref),
-		DashboardV2beta1RegexMapOptions{}.OpenAPIModelName():                                     schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1RegexMapOptions(ref),
-		DashboardV2beta1SpecialValueMapOptions{}.OpenAPIModelName():                              schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1SpecialValueMapOptions(ref),
-		DashboardValueMap{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardValueMap(ref),
-		DashboardValueMapOrRangeMapOrRegexMapOrSpecialValueMap{}.OpenAPIModelName():              schema_pkg_apis_dashboard_v2beta1_DashboardValueMapOrRangeMapOrRegexMapOrSpecialValueMap(ref),
-		DashboardValueMappingResult{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_DashboardValueMappingResult(ref),
-		DashboardVariableOption{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardVariableOption(ref),
-		DashboardVizConfigKind{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_DashboardVizConfigKind(ref),
-		DashboardVizConfigSpec{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_DashboardVizConfigSpec(ref),
-		DashboardWithAccessInfo{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_DashboardWithAccessInfo(ref),
-		Notebook{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_Notebook(ref),
-		NotebookAction{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_NotebookAction(ref),
-		NotebookActionVariable{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_NotebookActionVariable(ref),
-		NotebookCellKind{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookCellKind(ref),
-		NotebookCellKindOrV2PanelKindOrLibraryPanelKind{}.OpenAPIModelName():                     schema_pkg_apis_dashboard_v2beta1_NotebookCellKindOrV2PanelKindOrLibraryPanelKind(ref),
-		NotebookCellSpec{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookCellSpec(ref),
-		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.NotebookClient":    schema_pkg_apis_dashboard_v2beta1_NotebookClient(ref),
-		NotebookCodeCellContentKind{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_NotebookCodeCellContentKind(ref),
-		NotebookCodeCellContentSpec{}.OpenAPIModelName():                                         schema_pkg_apis_dashboard_v2beta1_NotebookCodeCellContentSpec(ref),
-		NotebookDataLink{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookDataLink(ref),
-		NotebookDataQueryKind{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookDataQueryKind(ref),
-		NotebookDynamicConfigValue{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_NotebookDynamicConfigValue(ref),
-		NotebookElementReference{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookElementReference(ref),
-		NotebookFetchOptions{}.OpenAPIModelName():                                                schema_pkg_apis_dashboard_v2beta1_NotebookFetchOptions(ref),
-		NotebookFieldColor{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_NotebookFieldColor(ref),
-		NotebookFieldConfig{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookFieldConfig(ref),
-		NotebookFieldConfigSource{}.OpenAPIModelName():                                           schema_pkg_apis_dashboard_v2beta1_NotebookFieldConfigSource(ref),
-		NotebookInfinityOptions{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_NotebookInfinityOptions(ref),
-		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.NotebookJSONCodec": schema_pkg_apis_dashboard_v2beta1_NotebookJSONCodec(ref),
-		NotebookLibraryPanelKind{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelKind(ref),
-		NotebookLibraryPanelKindSpec{}.OpenAPIModelName():                                        schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelKindSpec(ref),
-		NotebookLibraryPanelRef{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelRef(ref),
-		NotebookList{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookList(ref),
-		NotebookMarkdownCellContentKind{}.OpenAPIModelName():                                     schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentKind(ref),
-		NotebookMarkdownCellContentKindOrCodeCellContentKind{}.OpenAPIModelName():                schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentKindOrCodeCellContentKind(ref),
-		NotebookMarkdownCellContentSpec{}.OpenAPIModelName():                                     schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentSpec(ref),
-		NotebookMatcherConfig{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookMatcherConfig(ref),
-		NotebookNotebookLayoutItemKind{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutItemKind(ref),
-		NotebookNotebookLayoutItemSpec{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutItemSpec(ref),
-		NotebookNotebookLayoutKind{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutKind(ref),
-		NotebookNotebookLayoutSpec{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutSpec(ref),
-		NotebookPanelQueryKind{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_NotebookPanelQueryKind(ref),
-		NotebookPanelQuerySpec{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_NotebookPanelQuerySpec(ref),
-		NotebookQueryOptionsSpec{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookQueryOptionsSpec(ref),
-		NotebookRangeMap{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookRangeMap(ref),
-		NotebookRegexMap{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookRegexMap(ref),
-		NotebookSpec{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookSpec(ref),
-		NotebookSpecialValueMap{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_NotebookSpecialValueMap(ref),
-		NotebookThreshold{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookThreshold(ref),
-		NotebookThresholdsConfig{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookThresholdsConfig(ref),
-		NotebookTimeRangeOption{}.OpenAPIModelName():                                             schema_pkg_apis_dashboard_v2beta1_NotebookTimeRangeOption(ref),
-		NotebookTimeSettingsSpec{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookTimeSettingsSpec(ref),
-		NotebookV2PanelKind{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookV2PanelKind(ref),
-		NotebookV2PanelSpec{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookV2PanelSpec(ref),
-		NotebookV2QueryGroupKind{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookV2QueryGroupKind(ref),
-		NotebookV2QueryGroupSpec{}.OpenAPIModelName():                                            schema_pkg_apis_dashboard_v2beta1_NotebookV2QueryGroupSpec(ref),
-		NotebookV2TransformationKind{}.OpenAPIModelName():                                        schema_pkg_apis_dashboard_v2beta1_NotebookV2TransformationKind(ref),
-		NotebookV2TransformationSpec{}.OpenAPIModelName():                                        schema_pkg_apis_dashboard_v2beta1_NotebookV2TransformationSpec(ref),
-		NotebookV2beta1ActionStyle{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1ActionStyle(ref),
-		NotebookV2beta1DataQueryKindDatasource{}.OpenAPIModelName():                              schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1DataQueryKindDatasource(ref),
-		NotebookV2beta1FieldConfigSourceOverrides{}.OpenAPIModelName():                           schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1FieldConfigSourceOverrides(ref),
-		NotebookV2beta1RangeMapOptions{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1RangeMapOptions(ref),
-		NotebookV2beta1RegexMapOptions{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1RegexMapOptions(ref),
-		NotebookV2beta1SpecialValueMapOptions{}.OpenAPIModelName():                               schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1SpecialValueMapOptions(ref),
-		NotebookValueMap{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookValueMap(ref),
-		NotebookValueMapOrRangeMapOrRegexMapOrSpecialValueMap{}.OpenAPIModelName():               schema_pkg_apis_dashboard_v2beta1_NotebookValueMapOrRangeMapOrRegexMapOrSpecialValueMap(ref),
-		NotebookValueMappingResult{}.OpenAPIModelName():                                          schema_pkg_apis_dashboard_v2beta1_NotebookValueMappingResult(ref),
-		NotebookVizConfigKind{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookVizConfigKind(ref),
-		NotebookVizConfigSpec{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookVizConfigSpec(ref),
-		Variable{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_Variable(ref),
-		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.VariableClient":    schema_pkg_apis_dashboard_v2beta1_VariableClient(ref),
-		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.VariableJSONCodec": schema_pkg_apis_dashboard_v2beta1_VariableJSONCodec(ref),
-		VariableList{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_VariableList(ref),
-		VariableSpec{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_VariableSpec(ref),
+		DashboardQueryVariableSpec{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardQueryVariableSpec(ref),
+		DashboardRangeMap{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_DashboardRangeMap(ref),
+		DashboardRegexMap{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_DashboardRegexMap(ref),
+		DashboardRepeatOptions{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_DashboardRepeatOptions(ref),
+		DashboardRowRepeatOptions{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardRowRepeatOptions(ref),
+		DashboardRowsLayoutKind{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutKind(ref),
+		DashboardRowsLayoutRowKind{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutRowKind(ref),
+		DashboardRowsLayoutRowSpec{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutRowSpec(ref),
+		DashboardRowsLayoutSpec{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutSpec(ref),
+		DashboardSettings{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_DashboardSettings(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.DashboardSettingsClient":    schema_pkg_apis_dashboard_v2beta1_DashboardSettingsClient(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.DashboardSettingsJSONCodec": schema_pkg_apis_dashboard_v2beta1_DashboardSettingsJSONCodec(ref),
+		DashboardSettingsList{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_DashboardSettingsList(ref),
+		DashboardSettingsPanelDefaults{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_DashboardSettingsPanelDefaults(ref),
+		DashboardSettingsSpec{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_DashboardSettingsSpec(ref),
+		DashboardSettingsV2beta1SpecTimeRange{}.OpenAPIModelName():                                        schema_pkg_apis_dashboard_v2beta1_DashboardSettingsV2beta1SpecTimeRange(ref),
+		DashboardSpec{}.OpenAPIModelName():                                                                schema_pkg_apis_dashboard_v2beta1_DashboardSpec(ref),
+		DashboardSpecialValueMap{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_DashboardSpecialValueMap(ref),
+		DashboardStatus{}.OpenAPIModelName():                                                              schema_pkg_apis_dashboard_v2beta1_DashboardStatus(ref),
+		DashboardStringOrArrayOfString{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_DashboardStringOrArrayOfString(ref),
+		DashboardStringOrFloat64{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_DashboardStringOrFloat64(ref),
+		DashboardSwitchVariableKind{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardSwitchVariableKind(ref),
+		DashboardSwitchVariableSpec{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardSwitchVariableSpec(ref),
+		DashboardTabRepeatOptions{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardTabRepeatOptions(ref),
+		DashboardTabsLayoutKind{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutKind(ref),
+		DashboardTabsLayoutSpec{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutSpec(ref),
+		DashboardTabsLayoutTabKind{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutTabKind(ref),
+		DashboardTabsLayoutTabSpec{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_DashboardTabsLayoutTabSpec(ref),
+		DashboardTextVariableKind{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardTextVariableKind(ref),
+		DashboardTextVariableSpec{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardTextVariableSpec(ref),
+		DashboardThreshold{}.OpenAPIModelName():                                                           schema_pkg_apis_dashboard_v2beta1_DashboardThreshold(ref),
+		DashboardThresholdsConfig{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardThresholdsConfig(ref),
+		DashboardTimeRangeOption{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_DashboardTimeRangeOption(ref),
+		DashboardTimeSettingsSpec{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_DashboardTimeSettingsSpec(ref),
+		DashboardTransformationKind{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardTransformationKind(ref),
+		DashboardV2beta1ActionStyle{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1ActionStyle(ref),
+		DashboardV2beta1AdhocVariableKindDatasource{}.OpenAPIModelName():                                  schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1AdhocVariableKindDatasource(ref),
+		DashboardV2beta1DataQueryKindDatasource{}.OpenAPIModelName():                                      schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1DataQueryKindDatasource(ref),
+		DashboardV2beta1FieldConfigSourceOverrides{}.OpenAPIModelName():                                   schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1FieldConfigSourceOverrides(ref),
+		DashboardV2beta1GroupByVariableKindDatasource{}.OpenAPIModelName():                                schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1GroupByVariableKindDatasource(ref),
+		DashboardV2beta1RangeMapOptions{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1RangeMapOptions(ref),
+		DashboardV2beta1RegexMapOptions{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1RegexMapOptions(ref),
+		DashboardV2beta1SpecialValueMapOptions{}.OpenAPIModelName():                                       schema_pkg_apis_dashboard_v2beta1_DashboardV2beta1SpecialValueMapOptions(ref),
+		DashboardValueMap{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_DashboardValueMap(ref),
+		DashboardValueMapOrRangeMapOrRegexMapOrSpecialValueMap{}.OpenAPIModelName():                       schema_pkg_apis_dashboard_v2beta1_DashboardValueMapOrRangeMapOrRegexMapOrSpecialValueMap(ref),
+		DashboardValueMappingResult{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_DashboardValueMappingResult(ref),
+		DashboardVariableOption{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardVariableOption(ref),
+		DashboardVizConfigKind{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_DashboardVizConfigKind(ref),
+		DashboardVizConfigSpec{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_DashboardVizConfigSpec(ref),
+		DashboardWithAccessInfo{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_DashboardWithAccessInfo(ref),
+		Notebook{}.OpenAPIModelName():                                                                     schema_pkg_apis_dashboard_v2beta1_Notebook(ref),
+		NotebookAction{}.OpenAPIModelName():                                                               schema_pkg_apis_dashboard_v2beta1_NotebookAction(ref),
+		NotebookActionVariable{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_NotebookActionVariable(ref),
+		NotebookCellKind{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookCellKind(ref),
+		NotebookCellKindOrV2PanelKindOrLibraryPanelKind{}.OpenAPIModelName():                              schema_pkg_apis_dashboard_v2beta1_NotebookCellKindOrV2PanelKindOrLibraryPanelKind(ref),
+		NotebookCellSpec{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookCellSpec(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.NotebookClient":             schema_pkg_apis_dashboard_v2beta1_NotebookClient(ref),
+		NotebookCodeCellContentKind{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_NotebookCodeCellContentKind(ref),
+		NotebookCodeCellContentSpec{}.OpenAPIModelName():                                                  schema_pkg_apis_dashboard_v2beta1_NotebookCodeCellContentSpec(ref),
+		NotebookDataLink{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookDataLink(ref),
+		NotebookDataQueryKind{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookDataQueryKind(ref),
+		NotebookDynamicConfigValue{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookDynamicConfigValue(ref),
+		NotebookElementReference{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookElementReference(ref),
+		NotebookFetchOptions{}.OpenAPIModelName():                                                         schema_pkg_apis_dashboard_v2beta1_NotebookFetchOptions(ref),
+		NotebookFieldColor{}.OpenAPIModelName():                                                           schema_pkg_apis_dashboard_v2beta1_NotebookFieldColor(ref),
+		NotebookFieldConfig{}.OpenAPIModelName():                                                          schema_pkg_apis_dashboard_v2beta1_NotebookFieldConfig(ref),
+		NotebookFieldConfigSource{}.OpenAPIModelName():                                                    schema_pkg_apis_dashboard_v2beta1_NotebookFieldConfigSource(ref),
+		NotebookInfinityOptions{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_NotebookInfinityOptions(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.NotebookJSONCodec":          schema_pkg_apis_dashboard_v2beta1_NotebookJSONCodec(ref),
+		NotebookLibraryPanelKind{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelKind(ref),
+		NotebookLibraryPanelKindSpec{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelKindSpec(ref),
+		NotebookLibraryPanelRef{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_NotebookLibraryPanelRef(ref),
+		NotebookList{}.OpenAPIModelName():                                                                 schema_pkg_apis_dashboard_v2beta1_NotebookList(ref),
+		NotebookMarkdownCellContentKind{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentKind(ref),
+		NotebookMarkdownCellContentKindOrCodeCellContentKind{}.OpenAPIModelName():                         schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentKindOrCodeCellContentKind(ref),
+		NotebookMarkdownCellContentSpec{}.OpenAPIModelName():                                              schema_pkg_apis_dashboard_v2beta1_NotebookMarkdownCellContentSpec(ref),
+		NotebookMatcherConfig{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookMatcherConfig(ref),
+		NotebookNotebookLayoutItemKind{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutItemKind(ref),
+		NotebookNotebookLayoutItemSpec{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutItemSpec(ref),
+		NotebookNotebookLayoutKind{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutKind(ref),
+		NotebookNotebookLayoutSpec{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookNotebookLayoutSpec(ref),
+		NotebookPanelQueryKind{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_NotebookPanelQueryKind(ref),
+		NotebookPanelQuerySpec{}.OpenAPIModelName():                                                       schema_pkg_apis_dashboard_v2beta1_NotebookPanelQuerySpec(ref),
+		NotebookQueryOptionsSpec{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookQueryOptionsSpec(ref),
+		NotebookRangeMap{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookRangeMap(ref),
+		NotebookRegexMap{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookRegexMap(ref),
+		NotebookSpec{}.OpenAPIModelName():                                                                 schema_pkg_apis_dashboard_v2beta1_NotebookSpec(ref),
+		NotebookSpecialValueMap{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_NotebookSpecialValueMap(ref),
+		NotebookThreshold{}.OpenAPIModelName():                                                            schema_pkg_apis_dashboard_v2beta1_NotebookThreshold(ref),
+		NotebookThresholdsConfig{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookThresholdsConfig(ref),
+		NotebookTimeRangeOption{}.OpenAPIModelName():                                                      schema_pkg_apis_dashboard_v2beta1_NotebookTimeRangeOption(ref),
+		NotebookTimeSettingsSpec{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookTimeSettingsSpec(ref),
+		NotebookV2PanelKind{}.OpenAPIModelName():                                                          schema_pkg_apis_dashboard_v2beta1_NotebookV2PanelKind(ref),
+		NotebookV2PanelSpec{}.OpenAPIModelName():                                                          schema_pkg_apis_dashboard_v2beta1_NotebookV2PanelSpec(ref),
+		NotebookV2QueryGroupKind{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookV2QueryGroupKind(ref),
+		NotebookV2QueryGroupSpec{}.OpenAPIModelName():                                                     schema_pkg_apis_dashboard_v2beta1_NotebookV2QueryGroupSpec(ref),
+		NotebookV2TransformationKind{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookV2TransformationKind(ref),
+		NotebookV2TransformationSpec{}.OpenAPIModelName():                                                 schema_pkg_apis_dashboard_v2beta1_NotebookV2TransformationSpec(ref),
+		NotebookV2beta1ActionStyle{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1ActionStyle(ref),
+		NotebookV2beta1DataQueryKindDatasource{}.OpenAPIModelName():                                       schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1DataQueryKindDatasource(ref),
+		NotebookV2beta1FieldConfigSourceOverrides{}.OpenAPIModelName():                                    schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1FieldConfigSourceOverrides(ref),
+		NotebookV2beta1RangeMapOptions{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1RangeMapOptions(ref),
+		NotebookV2beta1RegexMapOptions{}.OpenAPIModelName():                                               schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1RegexMapOptions(ref),
+		NotebookV2beta1SpecialValueMapOptions{}.OpenAPIModelName():                                        schema_pkg_apis_dashboard_v2beta1_NotebookV2beta1SpecialValueMapOptions(ref),
+		NotebookValueMap{}.OpenAPIModelName():                                                             schema_pkg_apis_dashboard_v2beta1_NotebookValueMap(ref),
+		NotebookValueMapOrRangeMapOrRegexMapOrSpecialValueMap{}.OpenAPIModelName():                        schema_pkg_apis_dashboard_v2beta1_NotebookValueMapOrRangeMapOrRegexMapOrSpecialValueMap(ref),
+		NotebookValueMappingResult{}.OpenAPIModelName():                                                   schema_pkg_apis_dashboard_v2beta1_NotebookValueMappingResult(ref),
+		NotebookVizConfigKind{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookVizConfigKind(ref),
+		NotebookVizConfigSpec{}.OpenAPIModelName():                                                        schema_pkg_apis_dashboard_v2beta1_NotebookVizConfigSpec(ref),
+		Variable{}.OpenAPIModelName():                                                                     schema_pkg_apis_dashboard_v2beta1_Variable(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.VariableClient":             schema_pkg_apis_dashboard_v2beta1_VariableClient(ref),
+		"github.com/grafana/grafana/apps/dashboard/pkg/apis/dashboard/v2beta1.VariableJSONCodec":          schema_pkg_apis_dashboard_v2beta1_VariableJSONCodec(ref),
+		VariableList{}.OpenAPIModelName():                                                                 schema_pkg_apis_dashboard_v2beta1_VariableList(ref),
+		VariableSpec{}.OpenAPIModelName():                                                                 schema_pkg_apis_dashboard_v2beta1_VariableSpec(ref),
 	}
 }
 
@@ -4136,6 +4143,254 @@ func schema_pkg_apis_dashboard_v2beta1_DashboardRowsLayoutSpec(ref common.Refere
 		},
 		Dependencies: []string{
 			DashboardRowsLayoutRowKind{}.OpenAPIModelName()},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettings(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Spec is the spec of the DashboardSettings",
+							Default:     map[string]interface{}{},
+							Ref:         ref(DashboardSettingsSpec{}.OpenAPIModelName()),
+						},
+					},
+				},
+				Required: []string{"metadata", "spec"},
+			},
+		},
+		Dependencies: []string{
+			DashboardSettingsSpec{}.OpenAPIModelName(), "io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsClient(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"client": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/grafana/grafana-app-sdk/resource.TypedClient[T,L]"),
+						},
+					},
+				},
+				Required: []string{"client"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/grafana/grafana-app-sdk/resource.TypedClient[T,L]"},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsJSONCodec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "DashboardSettingsJSONCodec is an implementation of resource.Codec for kubernetes JSON encoding",
+				Type:        []string{"object"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref(DashboardSettings{}.OpenAPIModelName()),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"metadata", "items"},
+			},
+		},
+		Dependencies: []string{
+			DashboardSettings{}.OpenAPIModelName(), "io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsPanelDefaults(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Grafana owns this vocabulary; each plugin maps it onto its own options and ignores keys it does not use. Keys are only ever added.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"width": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"number"},
+							Format: "double",
+						},
+					},
+					"legendPlacement": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"tooltipMode": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"axisScale": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"decimals": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Codegen renders `int & >=0` as uint, which generates *uint64 and drops the lower bound from the schema; `>-1` keeps an int64 field and a minimum.",
+							Type:        []string{"integer"},
+							Format:      "int64",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"userUID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Owner of a user tier object (\"user-<userUID>\"). Unset on org and folder objects.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"preload": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"boolean"},
+							Format: "",
+						},
+					},
+					"autoRefresh": {
+						SchemaProps: spec.SchemaProps{
+							Description: "An empty string turns auto refresh off.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"timeRange": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref(DashboardSettingsV2beta1SpecTimeRange{}.OpenAPIModelName()),
+						},
+					},
+					"cursorSync": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Same values as DashboardCursorSync, without its default.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"layout": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"panels": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref(DashboardSettingsPanelDefaults{}.OpenAPIModelName()),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			DashboardSettingsPanelDefaults{}.OpenAPIModelName(), DashboardSettingsV2beta1SpecTimeRange{}.OpenAPIModelName()},
+	}
+}
+
+func schema_pkg_apis_dashboard_v2beta1_DashboardSettingsV2beta1SpecTimeRange(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"from": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"to": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+				},
+				Required: []string{"from", "to"},
+			},
+		},
 	}
 }
 

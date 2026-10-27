@@ -275,6 +275,7 @@ manifest: {
 				},
 				globalVariableV2beta1,
 				notebookV2beta1,
+				dashboardSettingsV2beta1,
 			]
 		}
 		"v2": {
