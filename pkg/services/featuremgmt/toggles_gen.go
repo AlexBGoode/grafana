@@ -726,6 +726,10 @@ const (
 	// Enables the tool that finds identical local variables across dashboards and promotes them to shared variables. Requires grafana.dashboardGlobalVariables
 	FlagGrafanaDashboardVariablesMigration = "grafana.dashboardVariablesMigration"
 
+	// FlagGrafanaDashboardSettings
+	// Enables org, folder and user defaults for new dashboards and panels (DashboardSettings in dashboard.grafana.app)
+	FlagGrafanaDashboardSettings = "grafana.dashboardSettings"
+
 	// FlagSecretsManagementAppPlatformAwsKeeper
 	// Enables the creation of keepers that manage secrets stored on AWS secrets manager
 	FlagSecretsManagementAppPlatformAwsKeeper = "secretsManagementAppPlatformAwsKeeper"

@@ -2201,6 +2201,14 @@ var (
 			Expression:  "false",
 		},
 		{
+			Name:        "grafana.dashboardSettings",
+			Description: "Enables org, folder and user defaults for new dashboards and panels (DashboardSettings in dashboard.grafana.app)",
+			Stage:       FeatureStageExperimental,
+			Generate:    Generate{Go: true, React: true},
+			Owner:       grafanaDashboardsSquad,
+			Expression:  "false",
+		},
+		{
 			Name:        "smoothingTransformation",
 			Description: "Enables the ASAP smoothing transformation for time series data",
 			Stage:       FeatureStageExperimental,

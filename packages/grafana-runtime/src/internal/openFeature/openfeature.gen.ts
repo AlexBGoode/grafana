@@ -176,6 +176,8 @@ export const FlagKeys = {
   GrafanaDashboardGlobalVariables: "grafana.dashboardGlobalVariables",
   /** Enables Viewing and Editing modes for dynamic dashboards */
   GrafanaDashboardPreviewMode: "grafana.dashboardPreviewMode",
+  /** Enables org, folder and user defaults for new dashboards and panels (DashboardSettings in dashboard.grafana.app) */
+  GrafanaDashboardSettings: "grafana.dashboardSettings",
   /** Redesigns dashboard settings page into Advanced Settings in a modal window */
   GrafanaDashboardSettingsRedesign: "grafana.dashboardSettingsRedesign",
   /** Enables the tool that finds identical local variables across dashboards and promotes them to shared variables. Requires grafana.dashboardGlobalVariables */
@@ -1285,6 +1287,17 @@ export const useFlagGrafanaDashboardGlobalVariables = (options?: ReactFlagEvalua
  */
 export const useFlagGrafanaDashboardPreviewMode = (options?: ReactFlagEvaluationOptions): boolean => {
   return useFlag("grafana.dashboardPreviewMode", false, options).value;
+};
+
+/**
+ * Enables org, folder and user defaults for new dashboards and panels (DashboardSettings in dashboard.grafana.app)
+ *
+ * **Details:**
+ * - flag key: `grafana.dashboardSettings`
+ * - default value: `false`
+ */
+export const useFlagGrafanaDashboardSettings = (options?: ReactFlagEvaluationOptions): boolean => {
+  return useFlag("grafana.dashboardSettings", false, options).value;
 };
 
 /**

@@ -126,6 +126,7 @@ declare module "@openfeature/core" {
     | "globalDashboardVariables"
     | "grafana.dashboardGlobalVariables"
     | "grafana.dashboardVariablesMigration"
+    | "grafana.dashboardSettings"
     | "smoothingTransformation"
     | "queryWithAssistant"
     | "queryEditorNext"
